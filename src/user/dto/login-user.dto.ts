@@ -1,6 +1,6 @@
 import { IsString, IsNotEmpty, MinLength } from 'class-validator';
 
-export class CreateUserDto {
+export class LoginUserDTO {
     @IsString()
     @IsNotEmpty()
     readonly username: string;
@@ -9,8 +9,5 @@ export class CreateUserDto {
     @IsNotEmpty()
     @MinLength(6)
     readonly password: string;
-
-    @IsString()
-    readonly role: string;
     
 }
