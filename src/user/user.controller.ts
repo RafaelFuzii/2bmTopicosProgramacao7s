@@ -1,7 +1,11 @@
-import { Controller, Get, Post, Body, Param, Delete, Put, HttpException, HttpStatus } from '@nestjs/common';
+import { Controller, Get, Post, Body, Param, Delete, Put, HttpException, HttpStatus, UseGuards } from '@nestjs/common';
 import { UserService } from './user.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
+import { Roles } from 'src/auth/role.decorator';
+import { Role } from 'src/auth/role.enum';
+import { AuthGuard } from 'src/auth/auth.guard';
+
 
 @Controller('users')
 export class UserController {
@@ -12,6 +16,7 @@ export class UserController {
     return this.usersService.create(createUserDto);
   }
 
+  @UseGuards(AuthGuard)
   @Get('allUsers')
   findAll() {
     return new HttpException("Retornando todos os usuarios", HttpStatus.FOUND)

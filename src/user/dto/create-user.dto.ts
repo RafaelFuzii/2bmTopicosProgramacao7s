@@ -1,4 +1,5 @@
 import { IsString, IsNotEmpty, MinLength } from 'class-validator';
+import { Role } from 'src/auth/role.enum';
 
 export class CreateUserDto {
     @IsString()
@@ -11,6 +12,6 @@ export class CreateUserDto {
     readonly password: string;
 
     @IsString()
-    readonly role: string;
+    readonly role: Role;
     
 }
